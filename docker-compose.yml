@@ -7,8 +7,12 @@ services:
     applications:
         image: tianon/true
         volumes:
-            - ../:/var/www
+            - ../ghub-web/:/var/www
 #            - ../sample/:/var/www/sample
+
+    redis-cluster:
+        build:
+            context: ./redis-cluster
 
 ### Workspace Utilities Container ###########################
 
@@ -87,6 +91,7 @@ services:
             - "443:443"
         links:
             - php-fpm
+            - redis-cluster:redis-cluster
 
 ### Apache Server Container #################################
 
