@@ -7,12 +7,15 @@ services:
     applications:
         image: tianon/true
         volumes:
-            - ../ghub-web/:/var/www
+            - ../:/var/www
 #            - ../sample/:/var/www/sample
 
     redis-cluster:
-        build:
-            context: ./redis-cluster
+        image: grokzen/redis-cluster
+        ports:
+           - "7000:7000"
+           - "7001:7001"
+           - "7002:7002"
 
 ### Workspace Utilities Container ###########################
 
