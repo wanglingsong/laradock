@@ -17,6 +17,11 @@ services:
            - "7001:7001"
            - "7002:7002"
 
+    ghub-core:
+        image: ghub/core
+        links:
+            - rabbitmq
+
 ### Workspace Utilities Container ###########################
 
     workspace:
@@ -95,7 +100,8 @@ services:
             - "443:443"
         links:
             - php-fpm
-            - redis-cluster:redis-cluster
+            - redis-cluster
+            - rabbitmq
 
 ### Apache Server Container #################################
 
