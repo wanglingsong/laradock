@@ -101,7 +101,6 @@ services:
         links:
             - php-fpm
             - redis-cluster
-            - rabbitmq
 
 ### Apache Server Container #################################
 
