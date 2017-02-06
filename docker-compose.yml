@@ -7,10 +7,12 @@ services:
     applications:
         image: tianon/true
         volumes:
-            - ../:/var/www
+            - ./blog/:/var/www
 #            - ../sample/:/var/www/sample
 
 ### Workspace Utilities Container ###########################
+    redis-cluster:
+        image: grokzen/redis-cluster
 
     workspace:
         build:
@@ -47,6 +49,7 @@ services:
         build:
             context: ./php-fpm
             args:
+                - INSTALL_PHPREDIS=true
                 - INSTALL_XDEBUG=false
                 - INSTALL_SOAP=false
                 - INSTALL_MONGO=false
@@ -87,6 +90,7 @@ services:
             - "443:443"
         links:
             - php-fpm
+            - redis-cluster:redis-cluster
 
 ### Apache Server Container #################################
 
