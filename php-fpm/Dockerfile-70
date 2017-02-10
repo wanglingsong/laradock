@@ -173,6 +173,14 @@ RUN if [ ${CODEIGNITER} = true ]; then \
      docker-php-ext-install tokenizer \
 ;fi
 
+# imagick
+RUN apt-get update \
+    && apt-get -y install \
+            libmagickwand-dev \
+        --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
